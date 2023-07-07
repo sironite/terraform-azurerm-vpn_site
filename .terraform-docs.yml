@@ -8,11 +8,12 @@ content: |-
 
   # Usage - Module
 
-  ## Network Watcher Flow Log
+  ## VPN Site
+    
   ```hcl
-  {{ include "examples/network-watcher-flow-log-example/main.tf" }}
-  ```
-
+  {{ include "examples/vpn-site-example/main.tf" }}
+  ``` 
+  
   {{ .Providers }}
 
   {{ .Modules }}
