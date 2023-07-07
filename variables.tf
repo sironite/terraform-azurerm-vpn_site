@@ -44,6 +44,11 @@ variable "link_name" {
   description = "Name of the link."
 }
 
+variable "enable_bgp" {
+  type        = bool
+  description = "Enable BGP."
+  default     = false
+}
 variable "bgp_asn" {
   type        = number
   description = "BGP ASN."

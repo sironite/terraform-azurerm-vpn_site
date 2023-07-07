@@ -63,6 +63,7 @@ No modules.
 | bgp\_asn | BGP ASN. | `number` | no |
 | bgp\_peering\_address | BGP peering address. | `string` | no |
 | default\_endpoint\_enabled | Default endpoint enabled. | `bool` | no |
+| enable\_bgp | Enable BGP. | `bool` | no |
 | enable\_link | Enable link. | `bool` | no |
 | enable\_o365\_policy | Enable O365 policy. | `bool` | no |
 | optimize\_endpoint\_enabled | Optimize endpoint enabled. | `bool` | no |

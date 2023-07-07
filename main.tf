@@ -11,9 +11,12 @@ resource "azurerm_vpn_site" "this" {
     for_each = var.enable_link ? [1] : []
     content {
       name = var.link_name
-      bgp {
-        asn             = var.bgp_asn
-        peering_address = var.bgp_peering_address
+      dynamic "bgp" {
+        for_each = var.enable_bgp ? [1] : []
+        content {
+          asn             = var.bgp_asn
+          peering_address = var.bgp_peering_address
+        }
       }
       ip_address    = var.ip_address
       provider_name = var.provider_name
@@ -24,9 +27,11 @@ resource "azurerm_vpn_site" "this" {
   dynamic "o365_policy" {
     for_each = var.enable_o365_policy ? [1] : []
     content {
+      traffic_category{
       allow_endpoint_enabled    = var.allow_endpoint_enabled
       default_endpoint_enabled  = var.default_endpoint_enabled
       optimize_endpoint_enabled = var.optimize_endpoint_enabled
+      }
     }
   }
 
