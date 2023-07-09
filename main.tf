@@ -8,25 +8,22 @@ resource "azurerm_vpn_site" "this" {
   device_vendor       = var.device_vendor
 
 dynamic "link" {
-  for_each = var.enable_link ? [1] : []
+    for_each = var.links
+    content {
+      name           = link.value.name
+      ip_address     = link.value.ip_address
+      provider_name  = link.value.provider_name
+      speed_in_mbps  = link.value.speed_in_mbps
 
-  content {
-    name          = each.value.link_name
-    ip_address    = each.value.ip_address
-    provider_name = each.value.provider_name
-    speed_in_mbps = each.value.speed_in_mbps
-
-    dynamic "bgp" {
-      for_each = each.value.enable_bgp ? [1] : []
-
-      content {
-        asn             = each.value.enable_bgp.bgp_asn
-        peering_address = each.value.enable_bgp.bgp_peering_address
+      dynamic "bgp" {
+        for_each = link.value.bgp_asn != null ? [link.value.bgp_asn] : []
+        content {
+          asn             = bgp.value
+          peering_address = link.value.bgp_peering_address
+        }
       }
     }
   }
-}
-
 
   dynamic "o365_policy" {
     for_each = var.enable_o365_policy ? [1] : []

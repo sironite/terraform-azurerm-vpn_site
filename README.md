@@ -58,8 +58,8 @@ No modules.
 | address\_cidrs | List of CIDR blocks representing the address ranges for the VPN site. | `list(string)` | no |
 | allow\_endpoint\_enabled | Flag to enable O365 policy - Allow Endpoint. | `bool` | no |
 | default\_endpoint\_enabled | Flag to enable O365 policy - Default Endpoint. | `bool` | no |
-| enable\_link | Map of link configurations for the VPN site. | <pre>map(object({<br>    link_name           = string<br>    ip_address          = string<br>    provider_name       = string<br>    speed_in_mbps       = number<br>    enable_bgp          = bool<br>    bgp_asn             = string<br>    bgp_peering_address = string<br>  }))</pre> | no |
 | enable\_o365\_policy | Flag to enable O365 policy for the VPN site. | `bool` | no |
+| links | List of links | <pre>list(object({<br>    name           = string<br>    ip_address     = string<br>    provider_name  = string<br>    speed_in_mbps  = number<br>    bgp_asn        = number<br>    bgp_peering_address = string<br>  }))</pre> | no |
 | optimize\_endpoint\_enabled | Flag to enable O365 policy - Optimize Endpoint. | `bool` | no |
 | tags | Tags to associate with the VPN site resource. | `map(string)` | no |
 

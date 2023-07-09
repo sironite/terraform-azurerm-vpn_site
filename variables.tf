@@ -34,18 +34,17 @@ variable "device_vendor" {
   type        = string
 }
 
-variable "enable_link" {
-  description = "Map of link configurations for the VPN site."
-  type        = map(object({
-    link_name           = string
-    ip_address          = string
-    provider_name       = string
-    speed_in_mbps       = number
-    enable_bgp          = bool
-    bgp_asn             = string
+variable "links" {
+  description = "List of links"
+  type        = list(object({
+    name           = string
+    ip_address     = string
+    provider_name  = string
+    speed_in_mbps  = number
+    bgp_asn        = number
     bgp_peering_address = string
   }))
-  default     = {}
+  default = []
 }
 
 variable "enable_o365_policy" {
