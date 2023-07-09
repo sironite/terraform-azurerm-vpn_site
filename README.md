@@ -49,32 +49,36 @@ No modules.
 
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
-| address\_cidrs | List of address CIDRs. | `list(string)` | yes |
-| device\_model | Model of the device. | `string` | yes |
-| device\_vendor | Vendor of the device. | `string` | yes |
-| ip\_address | IP address. | `string` | yes |
-| link\_name | Name of the link. | `string` | yes |
-| location | Location of the VPN site. | `string` | yes |
-| provider\_name | Provider name. | `string` | yes |
-| resource\_group\_name | Name of the resource group. | `string` | yes |
-| virtual\_wan\_id | ID of the virtual WAN. | `string` | yes |
+| device\_model | Model of the VPN site device. | `string` | yes |
+| device\_vendor | Vendor of the VPN site device. | `string` | yes |
+| location | Location/region where the VPN site is deployed. | `string` | yes |
+| resource\_group\_name | Name of the resource group where the VPN site is created. | `string` | yes |
+| virtual\_wan\_id | ID of the virtual WAN associated with the VPN site. | `string` | yes |
 | vpn\_site\_name | Name of the VPN site. | `string` | yes |
-| allow\_endpoint\_enabled | Allow endpoint enabled. | `bool` | no |
-| bgp\_asn | BGP ASN. | `number` | no |
-| bgp\_peering\_address | BGP peering address. | `string` | no |
-| default\_endpoint\_enabled | Default endpoint enabled. | `bool` | no |
-| enable\_bgp | Enable BGP. | `bool` | no |
-| enable\_link | Enable link. | `bool` | no |
-| enable\_o365\_policy | Enable O365 policy. | `bool` | no |
-| optimize\_endpoint\_enabled | Optimize endpoint enabled. | `bool` | no |
-| speed\_in\_mbps | Speed in Mbps. | `number` | no |
-| tags | Map of tags. | `map(string)` | no |
+| address\_cidrs | List of CIDR blocks representing the address ranges for the VPN site. | `list(string)` | no |
+| allow\_endpoint\_enabled | Flag to enable O365 policy - Allow Endpoint. | `bool` | no |
+| default\_endpoint\_enabled | Flag to enable O365 policy - Default Endpoint. | `bool` | no |
+| enable\_link | Map of link configurations for the VPN site. | <pre>map(object({<br>    link_name           = string<br>    ip_address          = string<br>    provider_name       = string<br>    speed_in_mbps       = number<br>    enable_bgp          = bool<br>    bgp_asn             = string<br>    bgp_peering_address = string<br>  }))</pre> | no |
+| enable\_o365\_policy | Flag to enable O365 policy for the VPN site. | `bool` | no |
+| optimize\_endpoint\_enabled | Flag to enable O365 policy - Optimize Endpoint. | `bool` | no |
+| tags | Tags to associate with the VPN site resource. | `map(string)` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| vpn\_site\_id | ID of the VPN site. |
+| address\_cidrs | List of CIDR blocks representing the address ranges for the VPN site. |
+| allow\_endpoint\_enabled | Flag indicating if O365 policy - Allow Endpoint is enabled. |
+| default\_endpoint\_enabled | Flag indicating if O365 policy - Default Endpoint is enabled. |
+| device\_model | Model of the VPN site device. |
+| device\_vendor | Vendor of the VPN site device. |
+| links | List of link configurations for the VPN site. |
+| location | Location/region where the VPN site is deployed. |
+| o365\_policy\_enabled | Flag indicating if O365 policy is enabled for the VPN site. |
+| optimize\_endpoint\_enabled | Flag indicating if O365 policy - Optimize Endpoint is enabled. |
+| resource\_group\_name | Name of the resource group where the VPN site is created. |
+| tags | Tags associated with the VPN site resource. |
+| virtual\_wan\_id | ID of the virtual WAN associated with the VPN site. |
 | vpn\_site\_name | Name of the VPN site. |
 
 ## Related documentation
