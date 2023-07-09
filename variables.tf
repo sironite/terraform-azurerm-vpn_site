@@ -1,108 +1,79 @@
 variable "vpn_site_name" {
-  type        = string
   description = "Name of the VPN site."
+  type        = string
 }
 
 variable "resource_group_name" {
+  description = "Name of the resource group where the VPN site is created."
   type        = string
-  description = "Name of the resource group."
 }
 
 variable "location" {
+  description = "Location/region where the VPN site is deployed."
   type        = string
-  description = "Location of the VPN site."
 }
 
 variable "virtual_wan_id" {
+  description = "ID of the virtual WAN associated with the VPN site."
   type        = string
-  description = "ID of the virtual WAN."
 }
 
 variable "address_cidrs" {
+  description = "List of CIDR blocks representing the address ranges for the VPN site."
   type        = list(string)
-  description = "List of address CIDRs."
+  default     = []
 }
 
 variable "device_model" {
+  description = "Model of the VPN site device."
   type        = string
-  description = "Model of the device."
 }
 
 variable "device_vendor" {
+  description = "Vendor of the VPN site device."
   type        = string
-  description = "Vendor of the device."
 }
 
 variable "enable_link" {
-  type        = bool
-  description = "Enable link."
-  default     = true
-}
-
-variable "link_name" {
-  type        = string
-  description = "Name of the link."
-}
-
-variable "enable_bgp" {
-  type        = bool
-  description = "Enable BGP."
-  default     = false
-}
-variable "bgp_asn" {
-  type        = number
-  description = "BGP ASN."
-  default     = null
-}
-
-variable "bgp_peering_address" {
-  type        = string
-  description = "BGP peering address."
-  default     = null
-}
-
-variable "ip_address" {
-  type        = string
-  description = "IP address."
-}
-
-variable "provider_name" {
-  type        = string
-  description = "Provider name."
-}
-
-variable "speed_in_mbps" {
-  type        = number
-  description = "Speed in Mbps."
-  default     = 50
+  description = "Map of link configurations for the VPN site."
+  type        = map(object({
+    link_name           = string
+    ip_address          = string
+    provider_name       = string
+    speed_in_mbps       = number
+    enable_bgp          = bool
+    bgp_asn             = string
+    bgp_peering_address = string
+  }))
+  default     = {}
 }
 
 variable "enable_o365_policy" {
+  description = "Flag to enable O365 policy for the VPN site."
   type        = bool
-  description = "Enable O365 policy."
   default     = false
 }
 
 variable "allow_endpoint_enabled" {
+  description = "Flag to enable O365 policy - Allow Endpoint."
   type        = bool
-  description = "Allow endpoint enabled."
-  default     = null
+  default     = false
 }
 
 variable "default_endpoint_enabled" {
+  description = "Flag to enable O365 policy - Default Endpoint."
   type        = bool
-  description = "Default endpoint enabled."
-  default     = null
+  default     = false
 }
 
 variable "optimize_endpoint_enabled" {
+  description = "Flag to enable O365 policy - Optimize Endpoint."
   type        = bool
-  description = "Optimize endpoint enabled."
-  default     = null
+  default     = false
 }
 
 variable "tags" {
+  description = "Tags to associate with the VPN site resource."
   type        = map(string)
-  description = "Map of tags."
   default     = {}
 }
